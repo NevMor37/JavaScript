@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_Home</title>
+    <script>
+            function showContent(){
+                  document.getElementById("demo").innerHTML = "Another Test on Java Script";
+            }
+        </script>
+</head>
+<script src = "outtaJS.js"></script>
+<p id = "demo">JavaScript can change HTML content</p>
+<button type = "button" onclick = 'document.getElementById("demo").innerHTML = "Test on first JS!"'>Click here to change content</button>
+<button type = "button" onclick = "document.getElementById('demo').style.fontSize = '35px'">Click here to change Font</button>
+<button type = "button" onclick = "document.getElementById('demo').style.display ='none'">Click here to hide content</button>
+<button type = "button" onclick = "document.getElementById('demo').style.display = 'block'">Click here to show content</button>
+<button type = "button" onclick = "showContent()">Click here to change content also</button>
+<button type = "button" onclick = "myFunction()">Click here to change content from out file</button>
+<br />
+<br />
+<script>
+          //document.getElementById("JSdisplay").
+         document.write(5+6);
+         function JSdisplay(){
+              window.alert("This is a pop window alert.");
+         }
+      var name1 = "Yangsui Deng",
+          name2 = "Shubin Wu",
+          name3 = name1+" "+name2;
+          console.log(name3);
+      var x = {firstname : "Shubin", lastname : "Wu",
+      fullname : function(){
+          return this.firstname + " "+this.lastname;
+        }
+      }; //Object
+      var cars = ["saab", "Volvo", "BMW"];
+      /*
+         Event type:
+         onchange
+         onclick
+         onmouseover : The user moves the mouse over an HTML element
+         onmouseout : The user moves the mouse away from an HTML element
+         onkeydown: The user pushes a keyboard key
+         onkeyup
+         onload :The browser has finished loading the page
+      */
+
+    var txt = "Shubin \"loves\" Yangsui";
+    var    txtl = txt.length;
+        console.log(txtl);
+    var pos = txt.indexOf("loves", 5);//start position for the search ,it's more powerful than the search() function
+    var pos2 = txt.search("Yangsui");
+    var sli = txt.slice(8,12);
+    var sub = txt.substring(8, 12);
+    var sub2 = txt.substr(8,5);
+    console.log(sub2);
+    console.log(sli);
+    var txt2 =txt.replace("Yangsui", "Yangsui forever.");
+    var txt3 = txt2.toUpperCase();
+    var txt4 = txt3.toLowerCase();
+    console.log(txt4);
+    console.log(txt4.charAt(0));
+    var str = "a,b,c,d,e,f,g";
+    txt.split(",");
+    console.log(Math.PI);
+          console.log(Math.round(4.7));
+          console.log(Math.pow(8,2));
+          console.log(Math.sqrt(64));
+          console.log(Math.abs(-100));
+          console.log(Math.ceil(4.4));//return 5
+          console.log(Math.floor(4.8));//return 4
+          console.log(Math.min(0,150, 30, 20, -8));
+          console.log(Math.random());//return a random number between 0 and 1
+   function getRanInteger(min, max){
+          return Math.floor((max-min+1) * Math.random())+min;
+   }
+    var text = "<ul>"
+    for(i=0;i<cars.length;i++){
+         text += "<li>"+ cars[i]+"</li>";
+    }
+    text+="</ul>";
+          console.log(text);
+
+    //document.getElementById("showCars").innerHTML = text;
+
+
+    </script>
+<button type = "button" onclick = "JSdisplay()">Click here to alert.</button><br />
+<button type = "button" onclick = "this.innerHTML = Date()" >Click here to show time</button><br />
+<p id = "showCars"></p><br />
+<p id = "err"></p><br />
+<script>
+    cars.push("VolksWagen");
+var text = "<ul>"
+    for(i=0;i<cars.length;i++){
+    text += "<li>"+ cars[i]+"</li>";
+    }
+    text+="</ul>";
+document.getElementById("showCars").innerHTML = text;
+console.log(cars.toString());
+cars.unshift("Lexus");//add a new element to an array from the beginning
+//delete cars[indexnumber];
+cars.sort();
+cars.reverse();
+
+var points = [40, 100, 1, 78, 63, 145, 37];
+console.log(points.sort(function (a, b){return a-b}));//for accending order
+    console.log(points.sort(function (a, b){return 0.5- Math.random()}));//for random order
+    try{
+        startAlert("Try this error");
+    }catch(err){
+         document.getElementById("err").innerHTML = err.message;
+         console.log(err.message);
+    }
+
+//"use strict" will open strict mode
+    var JsonF = '{ "employees" : [' +
+        '{ "firstName":"John" , "lastName":"Doe" },' +
+        '{ "firstName":"Anna" , "lastName":"Smith" },' +
+        '{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+    var obj = JSON.parse(JsonF);
+    console.log(obj.employees[0].firstName);
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<button type ="button" onclick = "test()">Click here</button>
+<p id = "demoPHP"></p>
+<script>
+  function test(){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+          console.log(xmlhttp);
+          if (this.readyState == 4 && this.status == 200) {
+              //var myObj = JSON.parse(this.responseText);
+              document.getElementById("demoPHP").innerHTML = this.responseText;
+
+          }
+          xmlhttp.open("GET", "JSONCreate.php", true);
+          xmlhttp.send();
+      };
+  }
+
+    /*
+    function callPHPrequest(r){
+        var tempS = r.responseText;
+        tempJ = JSON.parse(tempS);
+        console.log(tempJ.name);
+        document.getElementById("demoPHP").innerHTML = tempJ.name;
+    }*/
+</script>
+</body>
+</html>

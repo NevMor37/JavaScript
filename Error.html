@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom error Generator</title>
+</head>
+<body>
+<p>Type a number between 5 and 10:</p><br />
+       <input type = "text" onkeyup = "check(this.value)">
+<script>
+       function check(con){
+            //var con = document.getElementById("inp").innerHTML;
+            try{
+                if(con == "") throw "Empty";
+                if (isNaN(con)) throw"Please enter a numerical number";
+                x= Number(x);
+                if(con>10) throw "Too Large";
+                if(con<5) throw "To small";
+            }catch(err){
+                window.alert(err);
+            }
+       }
+       //JS Object constructor
+    function mylove (first, last, age, eye){
+           this.firstName = first;
+           this.lastName = last;
+           this.age = age;
+           this.eyeColor = eye;
+    }
+    mylove.prototype.nationality = "English";
+    var D = new mylove('Yangsui','Deng', '21', 'black');
+    console.log(D);
+    function findMax(){
+        var i;
+        var max = -Infinity;
+        for(i = 0; i<arguments.length;i++){
+            if(arguments[i]>max){
+                max = arguments[i];
+            }
+        }
+        return max;
+    }
+
+    var person = {
+        firstname : "Ziang",
+        lastname : "Bai",
+        fullname : function(){
+            return this.firstname +" "+this.lastname;
+        }
+    }
+    var myObject  ={
+        firstname : "MinMing",
+        lastname : "Lv"
+    }
+    person.fullname.call(myObject);
+    person.fullname.apply(myObject);//similar to the call function above
+    console.log(person.fullname());
+var add = (function(){
+    var counter = 0;
+    return function(){return count+=1;}
+})();
+
+
+//This is called a function closure and auto invokation
+    </script>
+
+</body>
+</html>

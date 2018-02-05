@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id = "NavDemo">JS_HTML_DOM</title>
+    <style type="text/css">
+        #animation{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: red;
+        }
+        #Container{
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: yellow;
+        }
+    </style>
+    <script>
+        /*
+         var a= document.getElementById("id");
+         var b = document.getElementsByTagName("p");
+         var c = document.getElementsByClassName("className");
+         //Find html elements by css selectors, below will return all p tags with intro class
+         var d= document.querySelectorAll("p.intro");
+         */
+        function formFunction(){
+            var x = document.forms["form1"];
+            var txt = "";
+            var i;
+            for(i =0; i<x.length;i++){
+                 txt += x[i].value + "<br />";
+            }
+            document.getElementById("demo").innerHTML = txt;
+        }
+        document.write(Date());
+        //console.log(document.getElementById("myImage").src);
+        //document.getElementById("myImage").style.height = "400";
+
+        function makeAnimation(){
+            var pos = 0;
+            var elem = document.getElementById("animation");
+            //To let the window to call the frame function /0.005s.
+            var id = setInterval(frame, 5);
+            function frame(){
+                if(pos == 350){
+                    //clearInterval(id);
+                    pos=0;
+                }else{
+                    elem.style.top = pos+'px';
+                    elem.style.left = pos+'px';
+                    pos++;
+                }
+            }
+        }
+        /*
+        The onload and onunload events are triggered when the user enters or leaves the page.
+        The onload event can be used to check the visitor's browser type and browser version,
+        and load the proper version of the web page based on the information.
+        The onload and onunload events can be used to deal with cookies.
+        */
+       function checkCookies(){
+            var text = "";
+            if(navigator.cookieEnabled == true){
+                text = "Cookies are enabled";
+            }else{
+                text = "Cookies are not enabled";
+            }
+            console.log(text);
+            document.getElementById("showCookies").innerHTML = text;
+       }
+        </script>
+</head>
+<body onload = "checkCookies()">
+      <form id = "form1">
+           <input type = "text" name = "fname">
+           <input type = "text" name = "lname">
+           <input type = "submit" value = "Submit">
+      </form>
+      <button type = "button" onclick = "formFunction()">Try to display values in form</button>
+      <p id="demo"></p><br />
+      <img id = "myImage" src = "lamb.jpg" width = "200" height = "200"><br />
+      <div id = "Container">
+      <div id = "animation">My animation will go here</div>
+      </div>
+      <button type = "button" onclick = "makeAnimation()">Click here to show animation</button><br />
+      <p id = "showCookies"></p><br />
+      <button type = "button" id ="TestEventListener">TestEventListener</button><br />
+      <button type = "button" id = "multipleE">TestMultipleEvent</button>
+      <p id = "multiE"></p><br/>
+      <p id = "resizeW">Random number pop up here when resize borser</p><br />
+
+
+    <script>
+        //Add EventListener
+    document.getElementById("TestEventListener").addEventListener("click", function(){
+        alert("Hello World");
+    });
+    var e = document.getElementById("multipleE");
+    e.addEventListener("mouseup", function(){
+        document.getElementById("multiE").innerHTML = "Now mouse up";
+    });
+    e.addEventListener("mouseover", function1);
+    e.addEventListener("mouseout", function2);
+    function function1(){
+        document.getElementById("multiE").innerHTML+="Now you are doing mouse over" + "<br />";
+    }
+    function function2(){
+        document.getElementById("multiE").innerHTML+="Now you are doing mouse out" + "<br />";
+    }
+    //You can add multiple eventListener to one element and execute multiple function at the same time
+        window.addEventListener("resize", function(){
+               document.getElementById("resizeW").innerHTML ="<br />" + Math.random();
+        });
+    /*
+         document.getelementById().addEventListener("", " ", "default false");
+         means that you are using bubling event capture, the order of event handling would be  inner to outer
+         if you set it to true then event will be handling in the inverse order.
+         <div><p></p></div>
+     */
+     //element.removeEventListener(" ", " ", " ");
+    </script>
+
+      <p>DOM Navigation</p><br />
+      <div id = "div1">
+          <p id = "p1">This is a paragraph</p>
+          <p id = "p2">This is another paragraph</p>
+      </div>
+      <script>
+          console.log(document.getElementById("NavDemo").firstChild.nodeValue);//or childNodes[0].nodeValue
+         // alert(document.body.innerHTML);
+          //alert(document.documentElement.innerHTML);
+          console.log(document.getElementById("NavDemo").nodeName);
+          //This code creates a new <p> element:
+          var para = document.createElement("p");
+          //To add text to the <p> element, you must create a text node first. This code creates a text node:
+          var node = document.createTextNode("This is new");
+          //Then you must append the text node to the <p> element:
+          para.appendChild(node);
+         // Finally you must append the new element to an existing element.
+
+ //             This code finds an existing element:
+          var divE = document.getElementById("div1");
+          //This code appends the new element to the existing element:
+          //divE.appendChild(para);
+          var p1 = document.getElementById("p1");
+          divE.insertBefore(para,p1);
+          //divE.removeChild(p1);
+          //divE.replaceChild(element1, element2);
+
+         //JS DOM collections we can get access of each tag just like .innerHTML
+          var col = document.getElementsByTagName("p");
+          var i = 0;
+          while(i< col.length){
+               document.write(col[i].innerHTML + "<br />");
+               col[i].style.color = "red";
+               col[i].style.backgroundColor = "blue";
+               i++;
+          }
+        //Node lists is  almost the same as JS collection
+          //var myNodeList = document.getElementsByClassName();
+          var myNodeLists =  document.querySelectorAll("div");
+          i = 0;
+          while(i<myNodeLists.length){
+              i++;
+              document.write(myNodeLists[i].nodeValue + "<br>");
+          }
+          </script>
+
+
+
+</body>
+</html>

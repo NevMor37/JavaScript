@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<input type = "text" placeholder="Enter a name here" onkeyup = "getHint(this.value)"><br />
+Suggestion: <div id ="showHint"></div>
+<script>
+    function getHint(str){
+        if(str == ""){
+            document.getElementById("showHint").innerHTML = "";
+        }else{
+            if(window.XMLHttpRequest){
+                var r = new XMLHttpRequest();
+            }else{
+                var r = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            r.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    callBackFunction(r);
+                }
+            };
+            r.open("POST", "JS_AJAX_PHP.php?q="+str, true);
+            r.send();
+        }
+    }
+    function callBackFunction(r){
+        document.getElementById("showHint").innerHTML = r.responseText;
+    }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>JS_Form</title>
+    <script>
+        function validateForm() {
+            x= document.forms["myForm"]["fname"].value;
+            if(x == ""){
+                alert("Name must be filled out");
+                return false;
+            }
+        }
+        </script>
+
+</head>
+<body>
+       <form name = "myForm" onsubmit = "return validateForm()" method = "POST">
+              <input type = "submit" value = "Check_name"><br />
+       </form>
+<input id = "id1" type = "number" min = "100" max = "200">
+       <button type = "button" onclick = "myFunction()">check input here</button>
+       <div id = "errM"></div>
+<script>
+        function myFunction(){
+            var x = document.getElementById("id1");
+            if(!x.checkValidity()){
+                console.log(x.validationMessage);
+                document.getElementById("errM").innerHTML = x.validationMessage;
+            }
+        }
+
+        var person = new Object();
+        person.firstname = "Shubin";
+        person.lastname = "Wu";
+        var x = person;
+        //delete person.firstname;
+        console.log(x.firstname);
+
+    </script>
+
+</body>
+</html>

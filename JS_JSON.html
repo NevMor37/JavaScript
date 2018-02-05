@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_JSON</title>
+</head>
+<body>
+        <script>
+            //Sending Data
+             var myObj = {"mylove" : "Young", "myfrien":"Ziang", "myhelper":"Zongbian", "testDelete":"Ok", "cars":["Ford", "BMW", "Lexus"]};
+             var myJson = JSON.stringify(myObj);
+             //window.location = "whatever.php" + myJson;
+            console.log(myJson);
+            document.write("My location is " + window.location.href+"<br />");
+
+            //Receiving Data
+            var myJson2 = '{"mylove" : "Young", "myfren":"Ziang", "myhelper":"Zongbian"}';
+            var myObj2 = JSON.parse(myJson2);
+            document.write(myObj2.mylove + "<br />");
+
+            //Storing data, JSON makes it posiible to store JavaScript obj as text
+            console.log(window.localStorage);
+
+            localStorage.setItem("testJson", myJson);
+            text = localStorage.getItem("testJson");
+            text = JSON.parse(text);
+            console.log(text.myfrien);
+
+            /*
+            Since the JSON format is text only, it can easily be sent to and from a server, and used as a data format by
+            any programming language.
+            JavaScript has a built in function to convert a string, written in JSON format, into native JavaScript objects:
+            JSON.parse()
+            So, if you receive data from a server, in JSON format, you can use it like any other JavaScript object.
+
+            JSON doesn't use end tag
+            JSON is shorter
+            JSON is quicker to read and write
+            JSON can use arrays
+            The biggest difference is:
+            XML has to be parsed with an XML parser. JSON can be parsed by a standard JavaScript function.
+
+            XML is much more difficult to parse than JSON.
+            JSON is parsed into a ready-to-use JavaScript object.
+
+            For AJAX applications, JSON is faster and easier than XML:
+
+            Using XML
+
+            Fetch an XML document
+            Use the XML DOM to loop through the document
+            Extract values and store in variables
+            Using JSON
+
+            Fetch a JSON string
+            JSON.Parse the JSON string
+            */
+
+            //looping an object
+            for(x in myObj){
+                 document.write(myObj[x] + "<br>");//Only using bracket notation to access the property values
+            }
+            for(x in myObj.cars){
+                 document.write(myObj.cars[x]+" ");
+            }
+            delete myObj.testDelet;
+            /*
+            When sending data to a web server, the data has to be a string.
+            Convert a JavaScript object into a string with JSON.stringify().
+             */
+        </script>
+        <p id = "demoPHP"></p>
+        <script>
+               if(window.XMLHttpRequest){
+                   var r = new XMLHttpRequest();
+               }else{
+                   var r = new ActiveXObject(Microsoft.XMLHTTP);
+               }
+
+               r.onreadystatechange = function(){
+
+               };
+               function callPHPrequest(r){
+                     var tempS = r.responseText;
+                     tempJ = JSON.parse(tempS);
+                     console.log(tempJ.name);
+                     document.getElementById("demoPHP").innerHTML = tempJ.name;
+               }
+            </script>
+</body>
+</html>

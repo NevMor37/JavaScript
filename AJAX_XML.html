@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX_XML</title>
+    <style>
+        table,th,td {
+            border : 1px solid black;
+            border-collapse: collapse;
+        }
+        th,td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<button type = "button" onclick = "getCD()">Click to show CD info</button><br />
+
+<table id = "showCD"></table>
+
+<script>
+      function getCD(){
+          if(window.XMLHttpRequest){
+              var r = new XMLHttpRequest();
+          }else{
+              var r =new ActiveXObject(Microsoft.XMLHTTP);
+          }
+          r.onreadystatechange = function(){
+               if(this.status == 200 && this.readyState == 4){
+                   callbackFunction(this);
+               }
+          };
+          r.open("GET", "cd_catalog.xml", true);
+          r.send();
+      }
+       function callbackFunction(xml){
+          var xmlDoc = xml.responseXML;
+          var txt = "";
+          var cd = xmlDoc.getElementsByTagName("CD");
+          document.getElementById("showCD").innerHTML += "<tr><th>Artist</th><th>Title</th></tr>";
+          for(i = 0;i<cd.length;i++) {
+              txt1 = cd[i].getElementsByTagName("ARTIST")[0].innerHTML;
+              txt2 = cd[i].getElementsByTagName("TITLE")[0].innerHTML;
+              document.getElementById("showCD").innerHTML += "<tr><td>" + txt1 + "</td><td>" + txt2 + "</td></tr>";
+          }
+       }
+    </script>
+</body>
+</html>
